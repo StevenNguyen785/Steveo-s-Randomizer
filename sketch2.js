@@ -49,11 +49,9 @@ let counter = 0;
 let animating = true;
 let gm = [];
 let imageCounter = 0;
-let startRandomizerButton;
-let addMoreButton;
+let button;
 let cnv;
 let nameInputs = [];
-
 
 function preload() {
 
@@ -75,12 +73,12 @@ function setup() {
   text("click to randomize", width / 2, height / 2);
   (gm);
   setTimeout(changeBackground, 2000);
-
-  startRandomizerButton = select("#randButton")
-  startRandomizerButton.mousePressed(buttonPressed);
+  button = select("#randButton")
+  button.mousePressed(buttonPressed);
 
   addMoreButton = select('#addMoreButton')
-  addMoreButton.mousePressed(addAnotherInput);
+  addMoreButton.mousePressed(buttonPressed);
+
 
   button.style("padding", "10px");
   button.style("background-color", "#fc0808");
@@ -93,12 +91,6 @@ for (let i = 0; i < 3; i++) {
 }
 
 function draw() {
-
-  function addAnotherInput(){
-    nameInputs.push(createInput());
-    nameInputs[nameInputs.length -
-    1].parent("#inputFields");
-  }
 
   if (animating == true) {
     clear();
@@ -113,8 +105,6 @@ function draw() {
     }
   }
 }
-
-
 
 function changeBackground() {
   if (counter <= 5) {
