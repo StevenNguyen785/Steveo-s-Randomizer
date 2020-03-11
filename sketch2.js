@@ -36,7 +36,7 @@ let brainfart = [{
   name: "BITE!",
   color: "The Last of Us"
 }, {
-  name: "mindf***",
+  name: "mindfuck",
   color: "High School of the Dead"
 }, {
   name: "mindfreak",
@@ -49,8 +49,11 @@ let counter = 0;
 let animating = true;
 let gm = [];
 let imageCounter = 0;
-let button;
+let startRandomizerButton;
+let addMoreButton;
 let cnv;
+let nameInputs = [];
+
 
 function preload() {
 
@@ -72,14 +75,30 @@ function setup() {
   text("click to randomize", width / 2, height / 2);
   (gm);
   setTimeout(changeBackground, 2000);
-  button = select("#randButton")
-  button.mousePressed(buttonPressed);
-  button.class("randomizerButton");
-  button.style("padding", "30px");
-  button.style("background-color", "#00eaff");
+
+  startRandomizerButton = select("#randButton")
+  startRandomizerButton.mousePressed(buttonPressed);
+
+  addMoreButton = select('#addMoreButton')
+  addMoreButton.mousePressed(addAnotherInput);
+
+  button.style("padding", "10px");
+  button.style("background-color", "#fc0808");
+
+for (let i = 0; i < 3; i++) {
+  nameInputs.push(createInput());
+  nameInputs [nameInputs.length -
+  1].parent("#inputFields");
+  }
 }
 
 function draw() {
+
+  function addAnotherInput(){
+    nameInputs.push(createInput());
+    nameInputs[nameInputs.length -
+    1].parent("#inputFields");
+  }
 
   if (animating == true) {
     clear();
@@ -94,6 +113,8 @@ function draw() {
     }
   }
 }
+
+
 
 function changeBackground() {
   if (counter <= 5) {
@@ -135,7 +156,7 @@ function randomizer() {
     brainfart.splice(randomIndex, 1);
   } else {
     background(random(200, 255));
-    text("nothing left!", 50, 50);
+    text("Too Late! You've been bitten!", 40, 40);
   }
 }
 
@@ -147,7 +168,7 @@ function buttonPressed() {
 
 function mousePressed() {
   console.log("mousey")
-  fill(255, 51, 255);
+  fill(250, 12, 7);
   noStroke();
 
   square(mouseX, mouseY, 90, 90);
